@@ -1,0 +1,18 @@
+
+<div class="container">
+    <div class="row">
+      <div class="col-12 col-sm-8 col-lg-5">
+        <h6 class="text-muted">My Backlog</h6> 
+        <ul class="list-group">
+          <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let game of games">
+            <h4 class="list-group-item-heading">{{game.name}}</h4> 
+            <p class="list-group-item-text">Platforms: {{game.platform}}</p>
+            <p class="list-group-item-text">Released: {{game.released}}</p>
+            <div class="image-parent">
+                <img src={{game.backgroundImage}} class="img-fluid" alt="quixote">
+            </div>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </div>

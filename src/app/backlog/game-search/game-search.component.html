@@ -1,0 +1,55 @@
+<div class="container">
+  <div class="row mb-4 pt-5">
+    <div class="col-md-5 ">
+      <input
+        #search
+        value=""
+        placeholder="Search for a game..."
+        class="form-control form-control-underlined"
+        (keyup.enter)="searchGame(search.value)"
+      />
+    </div>
+    <div class="col-md-2">
+      <button
+        (click)="searchGame(search.value)"
+        class="btn btn-primary rounded-pill btn-block shadow-sm"
+      >
+        Search
+      </button>
+    </div>
+  </div>
+
+  <div class="loader" *ngIf="isLoading"></div>
+
+  <div class="card my-2" *ngFor="let results of searchResults">
+    <div class="row no-gutters">
+      <div class="col-auto">
+        <img
+          src="{{ results.background_image }}"
+          class="img-fluid img-max"
+          alt=""
+        />
+      </div>
+      <div class="col">
+        <div class="card-block px-2">
+          <h4 class="card-title">{{ results.name }}</h4>
+          <!-- <p class="card-text">Initial Release {{results.released}}</p> -->
+          <a href="#" class="btn btn-success float-right">+ Backlog</a>
+          <a href="#" class="mr-3 btn btn-primary float-right">Details</a>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer w-100 text-muted">
+      Initial Release: {{ results.released }}
+      <!-- <ng-container *ngFor="let results of searchResults">
+        <ng-container *ngFor="let genre of results.genres">
+           {{genre.name}}
+        </ng-container>
+      </ng-container> -->
+    </div>
+  </div>
+
+  <div *ngIf="noResults">
+    <p>no results returned</p>
+  </div>
+</div>
