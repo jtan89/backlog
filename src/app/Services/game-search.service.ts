@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { IGame } from '../Models/game.model';
+
 
 
 @Injectable({
@@ -8,12 +10,17 @@ import { map } from 'rxjs/operators';
 })
 export class GameSearchService {
 
-  apiUrl: string = 'https://api.rawg.io/api/games?';
+  searchUrl: string = 'https://api.rawg.io/api/games?';
+  detailsUrl: string = 'https://api.rawg.io/api/games/';
 
-  searchString: string = 'final fantasy';
+  gameSlug: string;
 
   prevPageUrl: string;
   nextPageUrl: string;
+
+  gameDetails: IGame;
+
+
 
   constructor(private _http: HttpClient) { }
 
@@ -22,11 +29,11 @@ export class GameSearchService {
   // }
 
   getSearchResults(userQuery) {
-    return this._http.get(this.apiUrl,
-        {
-          params: new HttpParams().set('search', userQuery)
-        }
-      )
+    return this._http.get(this.searchUrl,
+      {
+        params: new HttpParams().set('search', userQuery)
+      }
+    )
       .pipe(map(data => {
         const resultsArray: any[] = [];
         // tslint:disable-next-line: forin
@@ -45,6 +52,29 @@ export class GameSearchService {
         }
         return resultsArray;
       })
-    )
+      )
+  }
+
+  getGameDetails() {
+    console.log(this.gameSlug);
+    return this._http.get<IGame>(this.detailsUrl + this.gameSlug);
+      // .subscribe((data: IGame) => {
+      //   this.setGameDetails(data);
+      //   console.log(data);
+      // });
+  }
+
+  setGameDetails(game) {
+    this.gameDetails = game;
+  }
+
+  transferGameDetails() {
+    let details = this.gameDetails;
+    this.clearData();
+    return details;
+  }
+
+  clearData() {
+    this.gameDetails = undefined;
   }
 }

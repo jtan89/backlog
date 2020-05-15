@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GameSearchService } from 'src/app/Services/game-search.service';
-import { map } from 'rxjs/operators';
+import { IGame } from '../Models/game.model';
 
 @Component({
   selector: 'app-game-search',
@@ -49,6 +49,11 @@ export class GameSearchComponent implements OnInit {
         //  console.log(this.nextPageUrl);
         //  console.log(this.prevPageUrl);
       });
+  }
+
+  getGameSlug(slug) {
+    this.gameSearchService.gameSlug = slug;
+    console.log(slug);
   }
 
   assignNextPrevUrl() {

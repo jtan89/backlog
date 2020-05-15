@@ -1,4 +1,4 @@
-<div class="container">
+   <div class="container">
   <div class="row justify-content-center mb-4 pt-5">
     <div class="col-md-5">
       <input
@@ -34,30 +34,36 @@
         />
         <ng-template #noImage>
           <img
-          src="../../assets/Images/300px-No_image_available.svg.png"
-          class="img-fluid img-max"
-          alt=""
-        />
+            src="../../assets/Images/300px-No_image_available.svg.png"
+            class="img-fluid img-max"
+            alt=""
+          />
         </ng-template>
       </div>
+
       <div class="col">
         <div class="card-block px-2">
-          <h4 class="card-title">{{ results.name }}</h4>
-          <ng-container class="" *ngFor="let platform of results.platforms">
-            {{ platform.platform.name }},
+          <h4 class="card-title">
+            <strong>{{ results.name }}</strong>
+          </h4>
+          <span class=""><small>Platforms: </small></span>
+          <ng-container *ngFor="let platform of results.platforms">
+            <small class="text-secondary">{{ platform.platform.name }}, </small
+            >
           </ng-container>
-          <div>
-            <button type="button" class="btn btn-primary btn-sm">
-              + Backlog
-            </button>
-            <button type="button" class="btn btn-primary btn-sm">
+
+          <div class="action-buttons">
+            <button type="button" class="btn btn-info btn-sm" routerLink="/details" (click)="getGameSlug(this.results.slug)">
               Details
+            </button>
+            <button type="button" class="btn btn-success btn-sm">
+              + Backlog
             </button>
           </div>
         </div>
       </div>
     </div>
-    <div class="card-footer w-100">Initial Release: {{ results.released }}</div>
+    <div class="card-footer w-100"><small>Release Date: {{ results.released | date }}</small></div>
   </div>
 
   <div *ngIf="noResults">

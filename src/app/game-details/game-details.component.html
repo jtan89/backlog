@@ -1,0 +1,38 @@
+<div class="container" *ngIf="isDataLoaded">
+  <div
+    class="jumbotron my-4"
+    [style.background-image]="'url(' + gameDetails.background_image + ')'"
+  >
+    <div class="container">
+      <div class="row">
+        <h1 class="display-4 text-white mt-2 px-3 py-2 bg-panel">
+          <strong>{{gameDetails.name}}</strong>
+        </h1>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+        <ul>
+            <li>Title: {{gameDetails.name}}</li>
+            <li>Released: {{gameDetails.released}}</li>
+            <li>Developers: {{gameDetails.developers[0].name}}  </li>
+        </ul>
+        <span>
+            SCREENSHOTS/VIDEOS
+        </span>
+            <div [innerHTML]="gameDetails.description">
+            </div>
+        <ul>
+            <li>Platforms: </li>
+            <li>Genres: </li>
+        </ul>
+
+        <span>
+            STORES
+        </span>
+        
+    </div>
+  </div>
+</div>

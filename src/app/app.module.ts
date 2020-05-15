@@ -18,7 +18,9 @@ import { HomeComponent } from './home/home.component';
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'search', component: GameSearchComponent },
-  { path: 'backlog', component: BacklogComponent }
+  { path: 'backlog', component: BacklogComponent },
+  { path: 'details', component: GameDetailsComponent }
+
 ];
 
 @NgModule({
