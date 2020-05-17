@@ -11,7 +11,7 @@ export class GameDetailsComponent implements OnInit {
 
   isDataLoaded: boolean = false;
   gameDetails: IGame;
-  jumbotronImage: any;
+  
   //gameDetails: IGame = this.gameSearchService.transferGameDetails();
 
   constructor(private gameSearchService: GameSearchService) { }
@@ -21,6 +21,7 @@ export class GameDetailsComponent implements OnInit {
   }
 
   loadGameDetails() {
+
     this.gameSearchService.getGameDetails()
       .subscribe((data: IGame) => {
         this.gameSearchService.setGameDetails(data);

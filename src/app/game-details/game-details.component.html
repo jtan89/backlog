@@ -6,7 +6,7 @@
     <div class="container">
       <div class="row">
         <h1 class="display-4 text-white mt-2 px-3 py-2 bg-panel">
-          <strong>{{gameDetails.name}}</strong>
+          <strong>{{ gameDetails.name }}</strong>
         </h1>
       </div>
     </div>
@@ -14,25 +14,64 @@
 
   <div class="card">
     <div class="card-body">
-        <ul>
-            <li>Title: {{gameDetails.name}}</li>
-            <li>Released: {{gameDetails.released}}</li>
-            <li>Developers: {{gameDetails.developers[0].name}}  </li>
-        </ul>
-        <span>
-            SCREENSHOTS/VIDEOS
-        </span>
-            <div [innerHTML]="gameDetails.description">
-            </div>
-        <ul>
-            <li>Platforms: </li>
-            <li>Genres: </li>
-        </ul>
+      <p><strong class="text-white">Title: </strong>{{ gameDetails.name }}</p>
+      <p>
+        <strong class="text-white">Released: </strong
+        >{{ gameDetails.released | date }}
+      </p>
+      <p>
+        <strong class="text-white">Developers: </strong>
+        <ng-container *ngFor="let item of gameDetails.developers">
+          {{ item.name }}
+        </ng-container>
+      </p>
 
-        <span>
-            STORES
-        </span>
-        
+      <div>
+        <strong class="text-white">Game Description </strong>
+        <div [innerHTML]="gameDetails.description"></div>
+      </div>
+      <br />
+
+      
+        <strong class="text-white">Video & Screenshots </strong>
+        <div class="row">
+          <div class="col-3">
+            <a href="{{ gameDetails.clip.clip }}" target="_blank">
+              <img class="img-thumbnail" src="{{ gameDetails.clip.preview }}" />
+            </a>
+          </div>
+          <div class="col-3">
+            <a href="{{ gameDetails.background_image_additional }}" target="_blank">
+              <img class="img-thumbnail" target="_blank" src="{{ gameDetails.background_image_additional }}" />
+            </a>
+          </div>
+        </div>
+        <br>
+      
+
+      <p>
+        <strong class="text-white">Genre: </strong>
+        <ng-container *ngFor="let genre of gameDetails.genres">
+          {{ genre.name }}
+        </ng-container>
+      </p>
+
+      <p>
+        <strong class="text-white">Platforms: </strong>
+        <ng-container *ngFor="let platform of gameDetails.platforms">
+          {{ platform.platform.name }},
+        </ng-container>
+      </p>
+
+      <p>
+        <strong class="text-white">Where to Buy: </strong>
+        <ng-container *ngFor="let store of gameDetails.stores">
+          <a href="https://{{ store.store.domain }}" target="_blank">{{
+            store.store.name
+          }}</a
+          >,
+        </ng-container>
+      </p>
     </div>
   </div>
 </div>
