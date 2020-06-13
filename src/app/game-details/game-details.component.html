@@ -35,14 +35,14 @@
       
         <strong class="text-white">Video & Screenshots </strong>
         <div class="row">
-          <div class="col-3">
+          <!-- <div class="col-3">
             <a href="{{ gameDetails.clip.clip }}" target="_blank">
               <img class="img-thumbnail" src="{{ gameDetails.clip.preview }}" />
             </a>
-          </div>
-          <div class="col-3">
-            <a href="{{ gameDetails.background_image_additional }}" target="_blank">
-              <img class="img-thumbnail" target="_blank" src="{{ gameDetails.background_image_additional }}" />
+          </div>  -->
+          <div class="col-3 mt-2" *ngFor="let screenshot of gameScreenshots">
+            <a href="{{ screenshot.image }}" target="_blank">
+              <img class="img-thumbnail" target="_blank" src="{{ screenshot.image }}" />
             </a>
           </div>
         </div>

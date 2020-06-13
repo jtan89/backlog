@@ -24,6 +24,7 @@ export class GameSearchComponent implements OnInit {
 
   }
 
+  // Seaches the game based on user input.
   searchGame(value: string) {
     if (value !== '') {
       this.searchValue = value;
@@ -33,29 +34,25 @@ export class GameSearchComponent implements OnInit {
     }
   }
 
+  // Calls the game search service to make API call and stores results into an array.
   getGameTitles(searchValue) {
-
     this.isLoading = true;
-
     this.searchResults.length = 0;
     this.gameSearchService.getSearchResults(searchValue)
       .subscribe(results => {
         this.searchResults.push(...results);
         // placeholder to assign next/prev URL's to pass to service
         this.assignNextPrevUrl();
-        //
         this.isLoading = false;
-        console.log(this.searchResults);
-        //  console.log(this.nextPageUrl);
-        //  console.log(this.prevPageUrl);
       });
   }
 
-  getGameSlug(slug) {
+  // Assigns the selected game's slug to the service slug to setup the details API call.
+  assignGameSlug(slug) {
     this.gameSearchService.gameSlug = slug;
-    console.log(slug);
   }
 
+  // Assigns the next and prevous URL's.
   assignNextPrevUrl() {
     this.prevPageUrl = this.gameSearchService.prevPageUrl;
     this.nextPageUrl = this.gameSearchService.nextPageUrl;
